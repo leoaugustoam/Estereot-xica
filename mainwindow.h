@@ -182,6 +182,8 @@ private slots:
 
     void on_speedbox_currentIndexChanged(int index);
 
+    void on_pushButton_2_clicked();
+
 signals:
    // void sendMousePosition(QPoint&);
     void sendMouseClick(QString&);

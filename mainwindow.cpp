@@ -20,6 +20,7 @@
 #include <QTime>
 #include <QTimer>
 
+int flaganterior;
 int qtrocar;
 int qtrocar2;
 int imin;
@@ -98,6 +99,7 @@ QByteArray linhat1;
 QString linhat3;
 QByteArray linhat2;
 QString auxraio;
+QString offtools;
 int flaglinha;
 int tamanholinha;
 int flagok;
@@ -190,9 +192,10 @@ raio = 0;
   ui->desenhobox2->setDecimals(2);
   ui->desenhobox2->setSingleStep(0.1);
 
+//***********************************************************************************************************************************//
 
-
-
+  //ui->eletrobutton->setStyleSheet("color: rgb(255, 0, 0);");
+flaganterior = 0;
 
   QTimer *time = new QTimer(this);
   connect(time, SIGNAL(timeout()), this, SLOT(cronometro()));
@@ -1322,12 +1325,15 @@ void MainWindow::on_zerarx_clicked()
 {
   flagbregma = 1;
   ui->setButton->setEnabled(true);
+  ui->pushButton->setEnabled(true);
 
 
   xg54 = xg54 + valorx;
   yg54 = yg54 + valory;
   zg54 = zg54 + valorz;
 
+offseteletrodo = 0;
+  ui->offprobe->setText("0.00");
 
   auxbre= zg54;//VERIFICAR SE IGUALA A VALORZ OU A ZG54
   //xg54 = valorx;
@@ -1493,40 +1499,13 @@ void MainWindow::on_syringeButton_clicked()
 
 void MainWindow::on_eletrobutton_clicked()
 {
-  if (ui->presetbutton->isEnabled() == false) {
-    QMessageBox::warning(this, "Aviso", "Primeiramente referencie a maquina antes de trocar a ferramenta!");
-    ui->outrosButton->click();
-  }
-  else {
-    if (flageletrodo == 0 && offseteletrodo == 0.0 ) {
-      ui->drillButton->setStyleSheet("color: rgb(0, 0, 0);");
-      ui->syringeButton->setStyleSheet("color: rgb(0, 0, 0);");
-      ui->outrosButton->setStyleSheet("color: rgb(0, 0, 0);");
-      ui->eletrobutton->setStyleSheet("color: rgb(255, 0, 0);");
-      ferramenta = 3;
-      flagsyringe = 0;
-      flagdrill = 0;
-      flageletrodo = 1;
-    }
-
-    if (offseteletrodo != 0.0) {
-      ferramenta = 3;
-      flagsyringe = 0;
-      flagdrill = 0;
-      flageletrodo = 1;
-    }
-
-
-    if (flagdrill == 1 || flagsyringe == 1) {
-      flagdrill = 0;
-      flagsyringe = 0;
-    }
-  }
 
 }
 
 void MainWindow::on_outrosButton_clicked()
 {
+
+
   if (ui->presetbutton->isEnabled() == false) {
     ui->drillButton->setStyleSheet("color: rgb(0, 0, 0);");
     ui->syringeButton->setStyleSheet("color: rgb(0, 0, 0);");
@@ -1561,6 +1540,7 @@ void MainWindow::on_outrosButton_clicked()
       flagsyringe = 0;
     }
   }
+
 
 }
 
@@ -1876,6 +1856,21 @@ void MainWindow::on_conectarButton_clicked()
 
 
       //ZERANDO E RESETANDO TODA A INTERFACE
+
+
+
+      //ui->eletrobutton->setStyleSheet("color: rgb(255, 0, 0);");
+    flaganterior = 0;
+    ui->eletrobutton->click();
+    ui->offdri->clear();
+    ui->offothers->clear();
+    ui->offprobe->clear();
+    ui->offsy->clear();
+
+    offsetoutros = 0;
+    offsetdrill = 0;
+    offseteletrodo = 0;
+    offsetseringa = 0;
 
        ui->recvEdit->clear();
 
@@ -3181,14 +3176,45 @@ void MainWindow::on_bregmaBox_valueChanged(double arg1)
 
 void MainWindow::on_pushButton_clicked()
 {
-    if (ui->syringeButton->isChecked() && flagsyringe == 0) {
-         ui->zBrowser->setText(pzmmfator);
-        valorz = pzmmfator.toFloat();
+
+    if (ui->drillButton->isChecked() && flagdrill == 1) {
+flaganterior = 1;
+        offsetdrill = valorz;
+        offd = QString::number(valorz , 'f',2);
+        ui->offdri->setText(offd);
     }
-    if (ui->eletrobutton->isChecked() && flageletrodo == 0) {
-         ui->zBrowser->setText(pzmmfator);
-        valorz = pzmmfator.toFloat();
+    if (ui->syringeButton->isChecked() && flagsyringe == 1) {
+flaganterior = 2;
+        offsetseringa = valorz;
+        offs = QString::number(valorz , 'f',2);
+        ui->offsy->setText(offs);
     }
+
+    if (ui->outrosButton->isChecked() && flagoutros == 1) {
+flaganterior = 3;
+        offsetoutros = valorz;
+        offo = QString::number(valorz , 'f',2);
+        ui->offothers->setText(offo);
+    }
+
+   /* if (ui->eletrobutton->isChecked()) {//PROBE
+
+        offtools = QString::number(valorz, 'f',2);
+        ui->offprobe->setText(offtools);
+
+    }*/
+    ui->drillButton->setStyleSheet("color: rgb(0, 0, 0);");
+    ui->syringeButton->setStyleSheet("color: rgb(0, 0, 0);");
+    ui->eletrobutton->setStyleSheet("color: rgb(0, 0, 0);");
+    ui->outrosButton->setStyleSheet("color: rgb(0, 0, 0);");
+    flagdrill = 0;
+    flageletrodo = 0;
+    flagsyringe = 0;
+    flagoutros = 0;
+
+
+
+
 }
 
 void MainWindow::on_setserimin_clicked()
@@ -3431,4 +3457,296 @@ void MainWindow::on_speedbox_currentIndexChanged(int index)
     f = " F";
     f.append(velomaq);
     f.append("\n");
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+
+
+
+    qDebug() <<"FLAG ANTERIOR: "<< flaganterior;
+
+
+    if (ui->drillButton->isChecked()) {
+        if(flaganterior == 0){
+            flaganterior = 1;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                msgteste = "G55 G0 Z";
+                valorz = valorz + offsetdrill;//valor da diferença entre eletrodo e drill
+                vz = QString::number(valorz, 'f',2);
+                msgteste.append(vz);
+                msgteste.append("\n");
+                Serial->write(msgteste);
+                ui->recvEdit->moveCursor(QTextCursor::End);
+                ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                ui->recvEdit->insertPlainText(msgteste);
+                //ui->recvEdit->insertPlainText("\n");
+                qDebug() << msgteste;
+                ui->zBrowser->setText(vz);
+              }
+            }
+        }
+        if(flaganterior == 2){
+            flaganterior = 1;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                msgteste = "G55 G0 Z";
+                valorz = valorz + (offsetdrill - offsetseringa);
+                vz = QString::number(valorz, 'f',2);
+                msgteste.append(vz);
+                msgteste.append("\n");
+                Serial->write(msgteste);
+                ui->recvEdit->moveCursor(QTextCursor::End);
+                ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                ui->recvEdit->insertPlainText(msgteste);
+                //ui->recvEdit->insertPlainText("\n");
+                qDebug() << msgteste;
+                ui->zBrowser->setText(vz);
+              }
+            }
+        }
+
+        if(flaganterior == 3){
+            flaganterior = 1;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                msgteste = "G55 G0 Z";
+                valorz = valorz + (offsetdrill - offsetoutros);
+                vz = QString::number(valorz, 'f',2);
+                msgteste.append(vz);
+                msgteste.append("\n");
+                Serial->write(msgteste);
+                ui->recvEdit->moveCursor(QTextCursor::End);
+                ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                ui->recvEdit->insertPlainText(msgteste);
+                //ui->recvEdit->insertPlainText("\n");
+                qDebug() << msgteste;
+                ui->zBrowser->setText(vz);
+              }
+            }
+        }
+
+    }
+
+    if (ui->syringeButton->isChecked() && flagsyringe == 1) {
+
+        if(flaganterior == 0){
+            flaganterior = 2;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                msgteste = "G55 G0 Z";
+                valorz = valorz + offsetseringa;//valor da diferença entre eletrodo e drill
+                vz = QString::number(valorz, 'f',2);
+                msgteste.append(vz);
+                msgteste.append("\n");
+                Serial->write(msgteste);
+                ui->recvEdit->moveCursor(QTextCursor::End);
+                ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                ui->recvEdit->insertPlainText(msgteste);
+                //ui->recvEdit->insertPlainText("\n");
+                qDebug() << msgteste;
+                ui->zBrowser->setText(vz);
+              }
+            }
+        }
+
+        if(flaganterior == 1){
+            flaganterior = 2;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                msgteste = "G55 G0 Z";
+                valorz = valorz + (-offsetdrill + offsetseringa);
+                vz = QString::number(valorz, 'f',2);
+                msgteste.append(vz);
+                msgteste.append("\n");
+                Serial->write(msgteste);
+                ui->recvEdit->moveCursor(QTextCursor::End);
+                ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                ui->recvEdit->insertPlainText(msgteste);
+                //ui->recvEdit->insertPlainText("\n");
+                qDebug() << msgteste;
+                ui->zBrowser->setText(vz);
+              }
+            }
+        }
+
+        if(flaganterior == 3){
+            flaganterior = 2;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                msgteste = "G55 G0 Z";
+                valorz = valorz + (-offsetoutros + offsetseringa);
+                vz = QString::number(valorz, 'f',2);
+                msgteste.append(vz);
+                msgteste.append("\n");
+                Serial->write(msgteste);
+                ui->recvEdit->moveCursor(QTextCursor::End);
+                ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                ui->recvEdit->insertPlainText(msgteste);
+                //ui->recvEdit->insertPlainText("\n");
+                qDebug() << msgteste;
+                ui->zBrowser->setText(vz);
+              }
+            }
+        }
+
+    }
+
+
+
+
+    if (ui->outrosButton->isChecked() && flagoutros == 1) {
+        if(flaganterior == 0){
+            flaganterior = 3;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                msgteste = "G55 G0 Z";
+                valorz = valorz + offsetoutros;
+                vz = QString::number(valorz, 'f',2);
+                msgteste.append(vz);
+                msgteste.append("\n");
+                Serial->write(msgteste);
+                ui->recvEdit->moveCursor(QTextCursor::End);
+                ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                ui->recvEdit->insertPlainText(msgteste);
+                //ui->recvEdit->insertPlainText("\n");
+                qDebug() << msgteste;
+                ui->zBrowser->setText(vz);
+              }
+            }
+        }
+
+
+        if(flaganterior == 1){
+            flaganterior = 3;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                msgteste = "G55 G0 Z";
+                valorz = valorz + (-offsetdrill + offsetoutros);
+                vz = QString::number(valorz, 'f',2);
+                msgteste.append(vz);
+                msgteste.append("\n");
+                Serial->write(msgteste);
+                ui->recvEdit->moveCursor(QTextCursor::End);
+                ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                ui->recvEdit->insertPlainText(msgteste);
+                //ui->recvEdit->insertPlainText("\n");
+                qDebug() << msgteste;
+                ui->zBrowser->setText(vz);
+              }
+            }
+        }
+        if(flaganterior == 2){
+            flaganterior = 3;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                msgteste = "G55 G0 Z";
+                valorz = valorz + (-offsetseringa + offsetoutros);
+                vz = QString::number(valorz, 'f',2);
+                msgteste.append(vz);
+                msgteste.append("\n");
+                Serial->write(msgteste);
+                ui->recvEdit->moveCursor(QTextCursor::End);
+                ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                ui->recvEdit->insertPlainText(msgteste);
+                //ui->recvEdit->insertPlainText("\n");
+                qDebug() << msgteste;
+                ui->zBrowser->setText(vz);
+              }
+            }
+        }
+
+    }
+
+
+
+
+
+
+    if (ui->eletrobutton->isChecked()) {
+
+        if(flaganterior == 1){
+            flaganterior = 0;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                  msgteste = "G55 G0 Z";
+                  valorz = valorz - offsetdrill;//valor de diferença entre drill e probe
+                  vz = QString::number(valorz, 'f',2);
+                  msgteste.append(vz);
+                  msgteste.append("\n");
+                  Serial->write(msgteste);
+                  ui->recvEdit->moveCursor(QTextCursor::End);
+                  ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                  ui->recvEdit->insertPlainText(msgteste);
+                  //ui->recvEdit->insertPlainText("\n");
+                  qDebug() << msgteste;
+                  ui->zBrowser->setText(vz);
+              }
+            }
+        }
+        if(flaganterior == 2){
+            flaganterior = 0;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                  msgteste = "G55 G0 Z";
+                  valorz = valorz - offsetseringa;
+                  vz = QString::number(valorz, 'f',2);
+                  msgteste.append(vz);
+                  msgteste.append("\n");
+                  Serial->write(msgteste);
+                  ui->recvEdit->moveCursor(QTextCursor::End);
+                  ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                  ui->recvEdit->insertPlainText(msgteste);
+                  //ui->recvEdit->insertPlainText("\n");
+                  qDebug() << msgteste;
+                  ui->zBrowser->setText(vz);
+              }
+            }
+        }
+        if(flaganterior == 3){
+            flaganterior = 0;
+
+            if (flagconectar == 1) {
+              if (Serial->isOpen()) {
+
+                  msgteste = "G55 G0 Z";
+                  valorz = valorz - offsetoutros;
+                  vz = QString::number(valorz, 'f',2);
+                  msgteste.append(vz);
+                  msgteste.append("\n");
+                  Serial->write(msgteste);
+                  ui->recvEdit->moveCursor(QTextCursor::End);
+                  ui->recvEdit->insertPlainText("TRANSMITIDO: ");
+                  ui->recvEdit->insertPlainText(msgteste);
+                  //ui->recvEdit->insertPlainText("\n");
+                  qDebug() << msgteste;
+                  ui->zBrowser->setText(vz);
+              }
+            }
+        }
+
+    }
 }
