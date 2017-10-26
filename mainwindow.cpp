@@ -20,6 +20,7 @@
 #include <QTime>
 #include <QTimer>
 
+int entrada;
 int flaganterior;
 int qtrocar;
 int qtrocar2;
@@ -208,7 +209,7 @@ flaganterior = 0;
   tttempo = "00:00:00";
   ui->crono->setText(tttempo);
 
-
+entrada = 0;
 
 
 
@@ -1262,17 +1263,16 @@ void MainWindow::on_zmaisButton_clicked()
 
 void MainWindow::on_zmenosButton_clicked()
 {
-    /*if((valorz - peso + zg54)<0){
 
-        QMessageBox::warning(this, "Aviso", "limite da maquina em Z-");
+    valorz = valorz - peso;
+    if (valorz < 0.01 && valorz > 0) {
+      valorz = 0;
     }
-    else{*/
-  valorz = valorz - peso;
-  if (valorz < 0.01 && valorz > 0) {
-    valorz = 0;
-  }
-  vz = QString::number(valorz, 'f',2);
-  ui->zBrowser->setText(vz);
+    vz = QString::number(valorz, 'f',2);
+    ui->zBrowser->setText(vz);
+
+
+
 
   if (flagconectar == 1) {
     if (Serial->isOpen() && flagbregma == 1) {
@@ -1858,6 +1858,7 @@ void MainWindow::on_conectarButton_clicked()
       //ZERANDO E RESETANDO TODA A INTERFACE
 
 
+      entrada = 0;
 
       //ui->eletrobutton->setStyleSheet("color: rgb(255, 0, 0);");
     flaganterior = 0;
@@ -3177,11 +3178,16 @@ void MainWindow::on_bregmaBox_valueChanged(double arg1)
 void MainWindow::on_pushButton_clicked()
 {
 
+   //     entrada = 1;
     if (ui->drillButton->isChecked() && flagdrill == 1) {
-flaganterior = 1;
+        flaganterior = 1;
         offsetdrill = valorz;
-        offd = QString::number(valorz , 'f',2);
+        offd = QString::number(offsetdrill , 'f',2);
+        //valorz = valorz - offsetdrill;
+        //vz = QString::number(valorz , 'f',2);
+        //ui->zBrowser->setText(vz);
         ui->offdri->setText(offd);
+
     }
     if (ui->syringeButton->isChecked() && flagsyringe == 1) {
 flaganterior = 2;
@@ -3464,7 +3470,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 
 
-    qDebug() <<"FLAG ANTERIOR: "<< flaganterior;
+ //   qDebug() <<"FLAG ANTERIOR: "<< flaganterior;
 
 
     if (ui->drillButton->isChecked()) {
@@ -3486,6 +3492,11 @@ void MainWindow::on_pushButton_2_clicked()
                 //ui->recvEdit->insertPlainText("\n");
                 qDebug() << msgteste;
                 ui->zBrowser->setText(vz);
+
+/*
+                valorz = valorz - offsetdrill;
+                vz = QString::number(valorz, 'f',2);
+                ui->zBrowser->setText(vz);*/
               }
             }
         }
@@ -3702,6 +3713,12 @@ void MainWindow::on_pushButton_2_clicked()
                   //ui->recvEdit->insertPlainText("\n");
                   qDebug() << msgteste;
                   ui->zBrowser->setText(vz);
+
+
+/*
+                  valorz = valorz + offsetdrill;
+                  vz = QString::number(valorz, 'f',2);
+                  ui->zBrowser->setText(vz);*/
               }
             }
         }
