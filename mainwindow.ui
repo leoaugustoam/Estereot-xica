@@ -343,7 +343,7 @@
    </widget>
    <widget class="QPushButton" name="setButton">
     <property name="enabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -905,14 +905,14 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
     <property name="geometry">
      <rect>
       <x>5</x>
-      <y>380</y>
+      <y>370</y>
       <width>261</width>
-      <height>201</height>
+      <height>211</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>7</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="autoFillBackground">
@@ -925,7 +925,7 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="usesScrollButtons">
      <bool>false</bool>
@@ -934,6 +934,9 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
      <bool>true</bool>
     </property>
     <property name="movable">
+     <bool>false</bool>
+    </property>
+    <property name="tabBarAutoHide">
      <bool>false</bool>
     </property>
     <widget class="QWidget" name="tools">
@@ -1017,52 +1020,6 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
         </widget>
        </item>
       </layout>
-     </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>100</y>
-        <width>61</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>offset novo</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="presetbutton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>30</y>
-        <width>61</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>OFFSET</string>
-      </property>
      </widget>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
@@ -1153,99 +1110,60 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
        </font>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="seringa">
-     <attribute name="title">
-      <string>Syringe</string>
-     </attribute>
-     <widget class="QPushButton" name="menoseri">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>130</y>
-        <width>31</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>-</string>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="seribox">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>40</y>
-        <width>61</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-     </widget>
-     <widget class="QProgressBar" name="seribar">
+     <widget class="QPushButton" name="presetbutton">
       <property name="enabled">
        <bool>false</bool>
       </property>
       <property name="geometry">
        <rect>
-        <x>5</x>
-        <y>90</y>
-        <width>181</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="value">
-       <number>24</number>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="serimenos">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>130</y>
-        <width>51</width>
-        <height>31</height>
+        <x>180</x>
+        <y>30</y>
+        <width>81</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
+      <property name="text">
+       <string>OFFSET</string>
+      </property>
      </widget>
-     <widget class="QPushButton" name="setseri">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>40</y>
-        <width>31</width>
-        <height>31</height>
+        <x>180</x>
+        <y>110</y>
+        <width>81</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>8</pointsize>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
-       <string>SET</string>
+       <string>OK</string>
       </property>
      </widget>
+    </widget>
+    <widget class="QWidget" name="seringa">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <attribute name="title">
+      <string>Syringe</string>
+     </attribute>
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
@@ -1263,49 +1181,38 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
       </property>
       <property name="font">
        <font>
-        <pointsize>10</pointsize>
+        <pointsize>12</pointsize>
         <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
       <property name="text">
-       <string>INITIAL VALUE IN SYRINGE</string>
+       <string>ACTION IN SYRINGE</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_14">
+     <widget class="QSpinBox" name="seriboxmin">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>67</x>
-        <y>35</y>
-        <width>21</width>
-        <height>41</height>
+        <x>0</x>
+        <y>150</y>
+        <width>91</width>
+        <height>31</height>
        </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
       </property>
       <property name="font">
        <font>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <pointsize>12</pointsize>
        </font>
       </property>
-      <property name="text">
-       <string>ML</string>
-      </property>
      </widget>
-     <widget class="QPushButton" name="setserimin">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
+     <widget class="QPushButton" name="setseri">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>40</y>
+        <x>92</x>
+        <y>150</y>
         <width>31</width>
         <height>31</height>
        </rect>
@@ -1319,39 +1226,46 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
        <string>SET</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_16">
+     <widget class="QPushButton" name="maisseringa">
       <property name="geometry">
        <rect>
-        <x>192</x>
-        <y>35</y>
-        <width>31</width>
-        <height>41</height>
+        <x>110</x>
+        <y>40</y>
+        <width>51</width>
+        <height>31</height>
        </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
       </property>
       <property name="font">
        <font>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <pointsize>16</pointsize>
        </font>
       </property>
       <property name="text">
-       <string>MIN</string>
+       <string>+</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="seriboxmin">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
+     <widget class="QPushButton" name="menoseringa">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>110</x>
+        <y>100</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="zerarse">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
         <y>40</y>
         <width>61</width>
         <height>31</height>
@@ -1359,107 +1273,124 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
       </property>
       <property name="font">
        <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>SET ZERO</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="passoseringa">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>70</y>
+        <width>71</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="seribox">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>120</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
         <pointsize>12</pointsize>
        </font>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="temp">
-     <attribute name="title">
-      <string>Temp</string>
-     </attribute>
-     <widget class="QPlainTextEdit" name="tempTextEdit">
+     <widget class="QProgressBar" name="seribar">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>50</y>
-        <width>51</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>10</y>
-        <width>161</width>
+        <x>130</x>
+        <y>150</y>
+        <width>131</width>
         <height>31</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <pointsize>12</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
        </font>
       </property>
-      <property name="text">
-       <string>TEMPERATURE</string>
+      <property name="value">
+       <number>24</number>
       </property>
      </widget>
-     <widget class="QPushButton" name="settempButton">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>115</x>
-        <y>50</y>
-        <width>35</width>
-        <height>31</height>
+        <x>0</x>
+        <y>40</y>
+        <width>92</width>
+        <height>80</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>SET</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="offtemp">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>50</y>
-        <width>31</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>OFF</string>
-      </property>
-     </widget>
-     <widget class="QTextBrowser" name="tempBrowser">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>50</y>
-        <width>51</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QRadioButton" name="zerarseringa">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>SET ZERO</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="encherseringa">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>FILL</string>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="injetarseringa">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>INJECT</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="desenho">
@@ -1471,7 +1402,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>10</x>
         <y>80</y>
-        <width>61</width>
+        <width>91</width>
         <height>31</height>
        </rect>
       </property>
@@ -1523,7 +1454,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>10</x>
         <y>110</y>
-        <width>61</width>
+        <width>91</width>
         <height>31</height>
        </rect>
       </property>
@@ -1536,8 +1467,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="lab1">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>80</y>
+        <x>100</x>
+        <y>85</y>
         <width>61</width>
         <height>21</height>
        </rect>
@@ -1554,7 +1485,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="lab2">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>100</x>
         <y>110</y>
         <width>51</width>
         <height>31</height>
@@ -1567,24 +1498,6 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="text">
        <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>150</y>
-        <width>121</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>UNITS IN MM</string>
       </property>
      </widget>
      <widget class="QWidget" name="layoutWidget">
@@ -1924,28 +1837,28 @@ p, li { white-space: pre-wrap; }
      <string>mm/s</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
+   <widget class="QScrollArea" name="scrollArea3">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>520</y>
+      <x>710</x>
+      <y>560</y>
       <width>61</width>
       <height>51</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
+    <property name="widgetResizable">
+     <bool>true</bool>
     </property>
-    <property name="text">
-     <string>OK</string>
-    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>59</width>
+       <height>49</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <zorder>scrollArea</zorder>
    <zorder>scrollArea2</zorder>
@@ -2006,7 +1919,7 @@ p, li { white-space: pre-wrap; }
    <zorder>stopButton_2</zorder>
    <zorder>speedbox</zorder>
    <zorder>label_18</zorder>
-   <zorder>pushButton_2</zorder>
+   <zorder>scrollArea3</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
@@ -2019,6 +1932,9 @@ p, li { white-space: pre-wrap; }
     </rect>
    </property>
    <widget class="QMenu" name="menucamera">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="title">
      <string>Camera</string>
     </property>

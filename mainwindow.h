@@ -45,10 +45,9 @@ public:
 public slots:
     void showMousePosition(QPoint& pos);
     void cronometro();
+    void cronometro2();
     void on_conectarButton_clicked();
     //void showMouseClick(QString &texto);
-
-private slots:
 
     void onReadyRead();
 
@@ -184,15 +183,31 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void mudarnomez();
+    void on_maisseringa_clicked();
+
+    void on_menoseringa_clicked();
+
+    void on_zerarse_clicked();
+
+    void on_encherseringa_clicked();
+
+    void on_injetarseringa_clicked();
+
+    void on_zerarseringa_clicked();
+
 signals:
    // void sendMousePosition(QPoint&);
     void sendMouseClick(QString&);
 
-private:
+public:
     Ui::MainWindow *ui;
     QCamera *mCamera;
     QCameraViewfinder *mCameraViewfinder;
     QCameraImageCapture *mCameraImageCapture;
+    QCamera *m3Camera;
+    QCameraViewfinder *m3CameraViewfinder;
+    QCameraImageCapture *m3CameraImageCapture;
     QCameraImageCapture *m2CameraImageCapture;
     QVBoxLayout *mLayout;
     QMenu *mOpcionesMenu;
@@ -202,6 +217,7 @@ private:
     QCamera *m2Camera;
     QCameraViewfinder *m2CameraViewfinder;
     QVBoxLayout *m2Layout;
+    QVBoxLayout *m3Layout;
     QMediaRecorder  *recorder;
 
     QTimer *timer;
