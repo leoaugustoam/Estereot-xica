@@ -227,6 +227,8 @@ protected:
     void paintEvent(QPaintEvent *e);
 
 
+private slots:
+    void on_comp_clicked();
 };
 
 #endif // MAINWINDOW_H

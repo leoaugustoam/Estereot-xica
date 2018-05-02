@@ -20,7 +20,9 @@
 #include <QTime>
 #include <QTimer>
 
-
+QString vvv;
+float compyser=18.94;
+float compxser=0.0;
 int flagtr;
 int auxdisable;
 int andamentoprocesso;
@@ -52,7 +54,6 @@ float auxdes;
 float auxdes2;
 float velseringa;
 float auxtempos;
-float auxseringa2;
 int auxtempo;
 float auxbre;
 int flagzferra;
@@ -181,6 +182,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
 
+
 tempodisable =0;
 tempodisableatual=0;
   auxcliqueseringa = 0;
@@ -225,6 +227,9 @@ flagtr=0;
   ui->speedbox->addItem("600");
   ui->speedbox->setCurrentIndex(2);
 
+  ui->xcomp->appendPlainText(QString::number(compxser));
+  ui->ycomp->appendPlainText(QString::number(compyser));
+
   raio = 0;
   ui->seribox->setEnabled(false);
   ui->passoseringa->setEnabled(true);
@@ -255,6 +260,9 @@ flagtr=0;
   ui->desenhobox2->setValue(1);
   ui->desenhobox2->setDecimals(2);
   ui->desenhobox2->setSingleStep(0.1);
+
+
+
 
   //***********************************************************************************************************************************//
 
@@ -753,11 +761,23 @@ void MainWindow::onReadyRead()
       }
     }
     lrec = linharec.toUtf8();
+    if(ui->syringeButton->isChecked()){
+    for (int ii = posfinal + 20; ii != (posfinal + 27); ii++) {
+      valorRecebido[ii - posfinal - 20] = lrec[ii];
+    }
+    }
+    if(ui->syringeButton->isChecked()==false){
     for (int ii = posfinal + 21; ii != (posfinal + 27); ii++) {
       valorRecebido[ii - posfinal - 21] = lrec[ii];
     }
+    }
     qDebug() << "VALOR RECEBIDO NA SERIAL DEPOIS DE EXCLUIR OS caracteres: " << valorRecebido;
-    temp = valorRecebido.toFloat();
+    vvv = valorRecebido;
+    qDebug() << "VVV" << vvv;
+    vvv.replace(":","");
+    qDebug() << "VVV sem :" << vvv;
+
+    temp = vvv.toFloat();
     qDebug() << "               VALOR RECEBIDO" << temp;
 
 
@@ -801,12 +821,12 @@ void MainWindow::onReadyRead()
       ui->offsy->setText(offs);
 
 
-      if (flagselserin == 2 && auxselserin == 0) { //entrada pela primeira vez
+      /*if (flagselserin == 2 && auxselserin == 0) { //entrada pela primeira vez
 
         qDebug() << "COMPENSOU NA SERINGA";
         msgteste = "G55 G91 G1 Y";
         qpeso = "";
-        qpeso = QString::number(-18.94);
+        qpeso = QString::number(-compyser);
         msgteste.append(qpeso);
         msgteste.append(f);
         Serial->write(msgteste);
@@ -827,15 +847,17 @@ void MainWindow::onReadyRead()
         auxselserin = 1;
       }
 
-      if (auxserin == 0) {
+      if (auxserin == 0) {*/
 
         qDebug() << "                                             auxserin VALOR Z:" << valorz;
         valorz = 0 - zg54 - (offsetseringa - offseteletrodo);
         qDebug() << "                                             auxserin VALOR Z:" << valorz;
         vz = QString::number(valorz, 'f', 2);
         ui->zBrowser->setText(vz);
+        flagselserin = 1;
+        auxselserin = 1;
         auxserin = 1;
-      }
+      //}
 
 
 
@@ -985,10 +1007,10 @@ void MainWindow::on_setButton_clicked()
       if (ui->syringeButton->isChecked()) {
         qDebug() << "                                           seringa goto 1";
         msgteste = "G55 G1 X";
-        pxmmfator = QString::number(xfator + 4.55, 'f', 2);
+        pxmmfator = QString::number(xfator + compxser, 'f', 2);
         msgteste.append(pxmmfator);
         msgteste.append(" Y");
-        pymmfator = QString::number(yfator + 13.34, 'f', 2);
+        pymmfator = QString::number(yfator + compyser, 'f', 2);
         msgteste.append(pymmfator);
         msgteste.append(f);
         Serial->write(msgteste);
@@ -2220,8 +2242,9 @@ void MainWindow::on_presetbutton_clicked()
         ui->seriboxmin->setEnabled(false);
         ui->setseri->setEnabled(false);
 
-        msgteste = "G54 G0 X110 Y-20 Z0";
-        msgteste.append("\n");
+        msgteste = "G54 G0 X110 Y";
+        msgteste.append(QString::number((-20+compyser)));
+        msgteste.append(" Z0\n");
         Serial->write(msgteste);
         ui->recvEdit->moveCursor(QTextCursor::End);
         ui->recvEdit->insertPlainText("TRANSMITIDO: ");
@@ -2405,6 +2428,9 @@ void MainWindow::on_conectarButton_clicked()
       tempototalseringa=0;
       tempocorridoseringa=0;
 
+      compyser=18.94;
+      compxser=0.0;
+
       auxdisable=0;
 
       tempodisable =0;
@@ -2458,6 +2484,8 @@ void MainWindow::on_conectarButton_clicked()
       yg54 = 0;
       zg54 = 0;
 
+      ui->xcomp->appendPlainText(QString::number(compxser));
+      ui->ycomp->appendPlainText(QString::number(compyser));
 
       ui->seribox->setEnabled(false);
       ui->seribox->setValue(0.1);
@@ -4259,7 +4287,7 @@ void MainWindow::on_pushButton_2_clicked()
         if (flagselserin == 1 && auxselserin == 1) {
           msgteste = "G55 G91 G1 Y";
           qpeso = "";
-          qpeso = QString::number(-18.94);
+          qpeso = QString::number(-compyser);
           msgteste.append(qpeso);
           msgteste.append(f);
           Serial->write(msgteste);
@@ -4340,7 +4368,7 @@ void MainWindow::on_pushButton_2_clicked()
         if (flagselserin == 1 && auxselserin == 1) {
           msgteste = "G55 G91 G1 Y";
           qpeso = "";
-          qpeso = QString::number(-18.94);
+          qpeso = QString::number(-compyser);
           msgteste.append(qpeso);
           msgteste.append(f);
           Serial->write(msgteste);
@@ -4438,7 +4466,7 @@ void MainWindow::on_pushButton_2_clicked()
           qDebug() << "                                 COMPENSOU NA SERINGA!!!!!!!!!!!!!!!!!!";
           msgteste = "G55 G91 G1 Y";
           qpeso = "";
-          qpeso = QString::number(-18.94);
+          qpeso = QString::number(compyser);
           msgteste.append(qpeso);
           msgteste.append(f);
           Serial->write(msgteste);
@@ -4563,7 +4591,7 @@ void MainWindow::on_pushButton_2_clicked()
         if (flagselserin == 1 && auxselserin == 1) {
           msgteste = "G55 G91 G1 Y";
           qpeso = "";
-          qpeso = QString::number(-18.94);
+          qpeso = QString::number(-compyser);
           msgteste.append(qpeso);
           msgteste.append(f);
           Serial->write(msgteste);
@@ -4850,4 +4878,13 @@ void MainWindow::on_zerarseringa_clicked()
   ui->seribar->setValue(0);
 
 }
+}
+
+
+void MainWindow::on_comp_clicked()
+{
+    compxser=(ui->xcomp->toPlainText()).toFloat();
+    compyser=(ui->ycomp->toPlainText()).toFloat();
+    qDebug()<<"compensar em X:"<<compxser;
+    qDebug()<<"compensar em Y:"<<compyser;
 }

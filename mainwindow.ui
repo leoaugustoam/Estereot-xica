@@ -925,7 +925,7 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="usesScrollButtons">
      <bool>false</bool>
@@ -949,7 +949,7 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
         <x>10</x>
         <y>30</y>
         <width>121</width>
-        <height>132</height>
+        <height>135</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1052,7 +1052,7 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
        <rect>
         <x>130</x>
         <y>30</y>
-        <width>50</width>
+        <width>71</width>
         <height>28</height>
        </rect>
       </property>
@@ -1070,7 +1070,7 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
        <rect>
         <x>130</x>
         <y>134</y>
-        <width>50</width>
+        <width>71</width>
         <height>28</height>
        </rect>
       </property>
@@ -1085,7 +1085,7 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
        <rect>
         <x>130</x>
         <y>100</y>
-        <width>50</width>
+        <width>71</width>
         <height>28</height>
        </rect>
       </property>
@@ -1100,7 +1100,7 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
        <rect>
         <x>130</x>
         <y>65</y>
-        <width>50</width>
+        <width>71</width>
         <height>28</height>
        </rect>
       </property>
@@ -1116,9 +1116,9 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
       </property>
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>200</x>
         <y>30</y>
-        <width>81</width>
+        <width>61</width>
         <height>51</height>
        </rect>
       </property>
@@ -1139,9 +1139,9 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
       </property>
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>200</x>
         <y>110</y>
-        <width>81</width>
+        <width>61</width>
         <height>51</height>
        </rect>
       </property>
@@ -1339,8 +1339,8 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
        <rect>
         <x>0</x>
         <y>40</y>
-        <width>92</width>
-        <height>80</height>
+        <width>110</width>
+        <height>94</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -1505,8 +1505,8 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>91</width>
-        <height>61</height>
+        <width>102</width>
+        <height>65</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -1553,6 +1553,122 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Adjust</string>
+     </attribute>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>241</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>ADJUST SYRINGE POSITION</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="xcomp">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>50</y>
+        <width>104</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="comp">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>80</y>
+        <width>81</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>OK</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="ycomp">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>100</y>
+        <width>104</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>21</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>X</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>21</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Y</string>
       </property>
      </widget>
     </widget>
@@ -2052,6 +2168,11 @@ image: url(:/imagens/fundo fusionjpeg.jpg);</string>
   <action name="actionChange_camera_2">
    <property name="text">
     <string>Change camera</string>
+   </property>
+  </action>
+  <action name="actionRefresh">
+   <property name="text">
+    <string>Refresh</string>
    </property>
   </action>
  </widget>
